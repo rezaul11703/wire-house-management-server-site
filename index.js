@@ -51,18 +51,14 @@ app.listen(port, ()=>{
           const users= await cursor.toArray()
           res.send(users)
         })
+        /// For Getting Catagory Information 
         app.get('/smartmonitor', async(req,res)=>{
           const query={catagory:"Smart TV"}
           const cursor=itemsInfo.find(query)
           const users=await cursor.toArray()
           res.send(users)
             })
-            app.get('/smartwatch', async(req,res)=>{
-              const query={catagory:"Smart Watch"}
-              const cursor=itemsInfo.find(query)
-              const users=await cursor.toArray()
-              res.send(users)
-                })
+            
                 app.get('/laptop', async(req,res)=>{
                   const query={catagory:"laptop"}
                   const cursor=itemsInfo.find(query)
