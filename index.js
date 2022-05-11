@@ -63,7 +63,30 @@ app.listen(port, ()=>{
               const users=await cursor.toArray()
               res.send(users)
                 })
-               
+                app.get('/laptop', async(req,res)=>{
+                  const query={catagory:"laptop"}
+                  const cursor=itemsInfo.find(query)
+                  const users=await cursor.toArray()
+                  res.send(users)
+                    })
+                    app.get('/desktop', async(req,res)=>{
+                      const query={catagory:"Computer"}
+                      const cursor=itemsInfo.find(query)
+                      const users=await cursor.toArray()
+                      res.send(users)
+                        })
+                        app.get('/acr', async(req,res)=>{
+                          const query={catagory:"Accessories"}
+                          const cursor=itemsInfo.find(query)
+                          const users=await cursor.toArray()
+                          res.send(users)
+                            })
+                            app.get('/smartmobi', async(req,res)=>{
+                              const query={catagory:"Smart Phone"}
+                              const cursor=itemsInfo.find(query)
+                              const users=await cursor.toArray()
+                              res.send(users)
+                                })
         app.get('/inventory/:id',async(req,res)=>{
           const id=req.params.id
           const query={_id:ObjectId(id)}
