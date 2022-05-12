@@ -58,7 +58,12 @@ app.listen(port, ()=>{
           const users=await cursor.toArray()
           res.send(users)
             })
-            
+            app.get('/smartwatch', async(req,res)=>{
+              const query={catagory:"Smart Watch"}
+              const cursor=itemsInfo.find(query)
+              const users=await cursor.toArray()
+              res.send(users)
+                })
                 app.get('/laptop', async(req,res)=>{
                   const query={catagory:"laptop"}
                   const cursor=itemsInfo.find(query)
@@ -83,12 +88,18 @@ app.listen(port, ()=>{
                               const users=await cursor.toArray()
                               res.send(users)
                                 })
-        app.get('/inventory/:id',async(req,res)=>{
+        app.get('/inventory/extra/:id',async(req,res)=>{
           const id=req.params.id
           const query={_id:ObjectId(id)}
-          const result= await homeProductInfo.findOne(query)
+          const result= await itemsInfo.findOne(query)
           res.send(result)
     })
+    app.get('/inventory/:id',async(req,res)=>{
+      const id=req.params.id
+      const query={_id:ObjectId(id)}
+      const result= await homeProductInfo.findOne(query)
+      res.send(result)
+})
     app.put('/inventory/:id', async(req,res)=>{
       const id=req.params.id
       const updatedUser=req.body
@@ -100,6 +111,19 @@ app.listen(port, ()=>{
         },
       };
       const result = await homeProductInfo.updateOne(query,updateDoc,options)
+      res.send(result)
+    })
+    app.put('/inventory/extra/:id', async(req,res)=>{
+      const id=req.params.id
+      const updatedUser=req.body
+      const  query={_id:ObjectId(id)}
+      const options = { upsert: true };
+      const updateDoc = {
+        $set: {
+          quantity:updatedUser.finalUser,
+        },
+      };
+      const result = await itemsInfo.updateOne(query,updateDoc,options)
       res.send(result)
     })
         app.delete('/inventory/:id',async(req,res)=>{
