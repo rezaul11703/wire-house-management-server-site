@@ -16,14 +16,7 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 async function run(){
     try{
       client.connect()
-      //testing
-app.get('/', (req,res)=>{
-  res.send('Smart Inventory management product Created')
-})
-
-app.listen(port, ()=>{
-  console.log('The Server is running on port no.', port)
-})
+     
 
       const itemsInfo= client.db("ManageItems").collection('ALL Inventories')
       const homeProductInfo= client.db("ManageItems").collection('dashboardProduct')
@@ -139,3 +132,11 @@ app.listen(port, ()=>{
 }
 run().catch(console.dir)
 
+ //testing
+ app.get('/', (req,res)=>{
+  res.send('Smart Inventory management product Created')
+})
+
+app.listen(port, ()=>{
+  console.log('The Server is running on port no.', port)
+})
